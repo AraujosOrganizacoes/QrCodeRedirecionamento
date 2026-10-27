@@ -1,0 +1,197 @@
+/* Definição de Cores da Empresa e Redes */
+:root {
+    /* Cores Padrão da Empresa */
+    --company-gold: #b59b08; /* Majoritária */
+    --company-dark: #04072b;
+    --white: #ffffff;
+    
+    /* Cores de Texto */
+    --text-on-gold: #1e293b;
+    --text-on-dark: #ffffff;
+    --text-muted-gold: #64748b;
+    --text-muted-dark: #cbd5e1;
+
+    /* Configurações dos Botões */
+    --card-bg: var(--white);
+    --shadow: 0 4px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+    
+    /* Cores das Redes Sociais (Fundo ao Hover) */
+    --color-whatsapp: #e1306c;
+    --color-instagram: hsl(180, 67%, 47%);
+}
+#e1306c
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex; /* Divide a tela em duas colunas */
+    transition: background-color 0.4s ease; /* Animação suave do fundo */
+    overflow-x: hidden; /* Evita barra de rolagem horizontal */
+}
+
+/* Estado Inicial (Cores da Empresa) */
+body.default-bg {
+    background-color: var(--company-gold);
+    color: var(--text-on-gold);
+}
+
+body.dark-bg {
+    background-color: var(--company-dark);
+    color: var(--text-on-dark);
+}
+
+/* Classes para mudança de fundo (Hover) */
+body.hover-whatsapp { background-color: var(--color-whatsapp); color: var(--text-on-dark); }
+body.hover-instagram { background-color: var(--color-instagram); color: var(--text-on-dark); }
+body.hover-youtube { background-color: var(--color-youtube); color: var(--text-on-dark); }
+body.hover-twitter { background-color: var(--color-twitter); color: var(--text-on-dark); }
+body.hover-spotify { background-color: var(--color-spotify); color: var(--text-on-dark); }
+body.hover-facebook { background-color: var(--color-facebook); color: var(--text-on-dark); }
+body.hover-web { background-color: var(--company-gold); color: var(--text-on-dark); }
+
+
+/* --- COLUNA ESQUERDA: CONTEÚDO --- */
+.content-wrapper {
+    flex: 1; /* Ocupa metade da tela */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centraliza verticalmente os links */
+    padding: 60px 40px;
+    z-index: 10; /* Garante que fique acima dos ícones */
+}
+
+.profile {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.logo-wrapper {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 20px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.main-logo {
+    width: 100%;
+    height: auto;
+}
+
+h1 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    transition: color 0.4s ease;
+}
+
+p {
+    font-size: 1rem;
+    transition: color 0.4s ease;
+}
+
+/* Cor do texto muted baseada no fundo */
+body.default-bg p, body.default-bg footer p { color: var(--text-muted-gold); }
+body:not(.default-bg) p, body:not(.default-bg) footer p { color: var(--text-muted-dark); }
+
+
+/* Estilo dos Links */
+.links-container {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.link-card {
+    background-color: var(--card-bg);
+    text-decoration: none;
+    color: var(--company-dark); /* Texto sempre escuro no botão branco */
+    padding: 18px 25px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centraliza o texto */
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.link-card span {
+    font-weight: 500;
+    font-size: 1.05rem;
+}
+
+/* Hover no Botão */
+.link-card:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 20px -5px rgba(0,0,0,0.15);
+}
+
+
+/* --- COLUNA DIREITA: EXIBIÇÃO DE ÍCONES (Área Vazia) --- */
+.icons-display-container {
+    flex: 1; /* Ocupa a outra metade da tela */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Estilo padrão dos ícones grandes (Ocultos) */
+.big-icon {
+    position: absolute;
+    width: 60%; /* Tamanho do ícone na tela */
+    max-width: 350px;
+    height: auto;
+    
+    /* Efeito de Opacidade e Posição (Surgir do lado) */
+    opacity: 0; 
+    transform: translateX(50px); /* Começa deslocado para a direita */
+    
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); /* Animação suave */
+    pointer-events: none; /* Não interfere nos cliques */
+}
+
+/* Classe ativada pelo JavaScript para mostrar o ícone */
+.big-icon.active {
+    opacity: 10; /* Opacidade baixa, como no desenho */
+    transform: translateX(0); /* Move para a posição final centralizada */
+}
+
+
+footer {
+    margin-top: 50px;
+    font-size: 0.85rem;
+    text-align: center;
+    transition: color 0.4s ease;
+}
+
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column; /* Empilha o conteúdo em telas pequenas */
+    }
+
+    .content-wrapper {
+        flex: none;
+        width: 100%;
+        padding: 40px 20px;
+    }
+
+    .icons-display-container {
+        display: none; /* Esconde a área de ícones grandes no mobile */
+    }
+}
